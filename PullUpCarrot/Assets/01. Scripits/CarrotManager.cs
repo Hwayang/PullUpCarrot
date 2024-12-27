@@ -28,7 +28,11 @@ public class CarrotManager : MonoBehaviour
 
     [SerializeField]
     [UnityEngine.Range(0, 0.05f)]
-    private float speed;
+    private float upSpeed;
+
+    [SerializeField]
+    [UnityEngine.Range(0, 0.05f)]
+    private float downSpeed;
 
     uint carrotCount = 0;
     bool alreadySummoned = false;
@@ -54,7 +58,16 @@ public class CarrotManager : MonoBehaviour
             foreach (GameObject carrot in carrotList)
             {
                 Vector2 currentPos = carrot.transform.position;
-                currentPos.y += speed;
+                currentPos.y += upSpeed;
+                carrot.transform.position = currentPos;
+            }
+        }
+        else
+        {
+            foreach (GameObject carrot in carrotList)
+            {
+                Vector2 currentPos = carrot.transform.position;
+                currentPos.y -= downSpeed;
                 carrot.transform.position = currentPos;
             }
         }
@@ -77,20 +90,6 @@ public class CarrotManager : MonoBehaviour
             }
 
             carrotSenser.isCarrotSummon = false;
-        }
-
-        if (carrotSenser.isCarrotDelete)
-        {
-            // 예: 가장 먼저 들어온 (인덱스 0) 당근부터 제거한다고 가정
-            GameObject target = carrotList[0];
-
-            // 씬에서도 제거
-            Destroy(target);
-
-            // 리스트에서도 제거
-            carrotList.RemoveAt(0);
-
-            carrotSenser.isCarrotDelete = false;
         }
     }
 }
