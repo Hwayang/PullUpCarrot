@@ -15,7 +15,7 @@ public class Carrot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 currentPos = transform.position;
+        Vector2 currentPos = transform.position;
 
         if(Input.GetMouseButton(0))
         {

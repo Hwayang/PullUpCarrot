@@ -200,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 98691608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: -5.09, z: 0}
+  m_LocalPosition: {x: -0.01, y: -5.09, z: 5.05}
   m_LocalScale: {x: 0.40656725, y: 0.52449936, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,7 +287,7 @@ Transform:
   m_GameObject: {fileID: 272793041}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -0.42, z: 0.29}
+  m_LocalPosition: {x: 0, y: -2.91, z: 0.29}
   m_LocalScale: {x: 0.36, y: 0.36, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -528,7 +528,7 @@ Transform:
   m_GameObject: {fileID: 834899186}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -0.42, z: 0.29}
+  m_LocalPosition: {x: 0, y: -0.42, z: 0.29}
   m_LocalScale: {x: 0.36, y: 0.36, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -689,7 +689,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1678849948209320181, guid: e689a75c8deac1748a746e8dc6e3165f, type: 3}
-  m_Color: {r: 0.990566, g: 0.63841575, b: 0.1448469, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -708,7 +708,7 @@ Transform:
   m_GameObject: {fileID: 1021746207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -0.42, z: 0.29}
+  m_LocalPosition: {x: 0, y: 0, z: 0.29}
   m_LocalScale: {x: 0.36, y: 0.36, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -901,6 +901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1517731010}
+  - component: {fileID: 1517731011}
   m_Layer: 0
   m_Name: CarrotManager
   m_TagString: Untagged
@@ -923,6 +924,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1517731011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517731009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5f4cf87795f494889ae4af43411bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {x: 0, y: -2.91}
 --- !u!1 &1709809873
 GameObject:
   m_ObjectHideFlags: 0
