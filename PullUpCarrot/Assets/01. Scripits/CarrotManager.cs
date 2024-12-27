@@ -67,6 +67,7 @@ public class CarrotManager : MonoBehaviour
                 GameObject newCarrot = Instantiate(carrotBottom);
                 // 리스트에 인스턴스 추가
                 carrotList.Add(newCarrot);
+                carrotCount++;
             }
             else
             {
