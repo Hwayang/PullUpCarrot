@@ -3,6 +3,7 @@ using UnityEngine;
 public class Carrot : MonoBehaviour
 {
     [SerializeField]
+    [Range(0, 0.05f)]
     private float speed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
