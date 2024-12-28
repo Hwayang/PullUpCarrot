@@ -57,6 +57,9 @@ public class CarrotManager : MonoBehaviour
     //아직 화면에 닿아있는지 여부
     private bool isDrag = false;
 
+    //당근이 올라가고 있는지 여부
+    private bool isUp = false;
+
     //최초 제스처 시작 좌표
     Vector2 startMousePos;
 
@@ -95,11 +98,6 @@ public class CarrotManager : MonoBehaviour
 
             isDrag = true;
         }
-        //화면을 누른 채 이동하고 있을 때
-        else if (Input.GetMouseButton(0))
-        {
-            
-        }
         //화면에서 손을 땠을 때
         else if (Input.GetMouseButtonUp(0))
         {
@@ -113,11 +111,12 @@ public class CarrotManager : MonoBehaviour
             Debug.Log("endMousePos" + endMousePos);
             Debug.Log("pullForce" + pullForce);
 
+            isUp = true;
             StartCoroutine(pullingCarrot(pullForce));
         }
 
         //화면을 홀드중이 아니면 당근이 지속적으로 내려간다.
-        if(!isDrag)
+        if(!isDrag || !isUp)
         {
             foreach (var carrot in carrotList)
             {
@@ -143,12 +142,13 @@ public class CarrotManager : MonoBehaviour
             carrot.gameObject.transform.position = curCarrotPos;
         }
 
-        tempforce *= 0.5f;
+        tempforce *= 4f;
 
-        yield return null;
+        yield return new WaitForSeconds(0.4f);
 
         if(tempforce > force)
         {
+            isUp = false;
             yield break;
         }
     }
