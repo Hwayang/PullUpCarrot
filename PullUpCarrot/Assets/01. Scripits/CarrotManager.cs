@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine.LightTransport;
 using System.Collections;
+using System.Linq;
 
 public class CarrotManager : MonoBehaviour
 {
@@ -27,7 +28,8 @@ public class CarrotManager : MonoBehaviour
     [Header("당근에 적용될 수치")]
 
     [SerializeField]//당근의 최초 생성 지점
-    Vector2 spawnPoint;
+    [UnityEngine.Range(0, 10)]
+    float spawnCorVal;
 
     [SerializeField] //최대 생성 가능한 당근의 개수 (길이)
     public uint maxCarrotCount;
@@ -165,14 +167,24 @@ public class CarrotManager : MonoBehaviour
             {
                 if (carrotCount == maxCarrotCount)
                 {
+                    Vector2 targetLoc = new Vector2(0, carrotList.Last().transform.position.y - spawnCorVal);
+                 
                     GameObject newCarrot = Instantiate(carrotBottom);
                     carrotList.Add(newCarrot);
+
+                    carrotList.Last().transform.position = targetLoc;
+
                     carrotCount++;
                 }
                 else
                 {
+                    Vector2 targetLoc = new Vector2(0, carrotList.Last().transform.position.y - spawnCorVal);
+
                     GameObject newCarrot = Instantiate(carrotMid);
                     carrotList.Add(newCarrot);
+
+                    carrotList.Last().transform.position = targetLoc;
+
                     carrotCount++;
                 }
 
