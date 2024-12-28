@@ -132,6 +132,17 @@ public class CarrotManager : MonoBehaviour
             isMouseDrag = false;
             draggedCarrot = null;
         }
+        else
+        {
+            foreach(var carrot in carrotList)
+            {
+                Vector2 curPos = carrot.gameObject.transform.position;
+
+                curPos.y -= downSpeed;
+
+                carrot.transform.position = curPos;
+            }
+        }
 
 
         if (carrotSenser.isCarrotSummon && carrotCount <= maxCarrotCount)
