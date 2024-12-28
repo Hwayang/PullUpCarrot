@@ -40,9 +40,9 @@ public class CarrotManager : MonoBehaviour
     private GameObject draggedCarrot = null;
     
     // 드래그 시작 시점에 “각 당근의 위치”를 기록해둘 리스트
-    private List<Vector3> initialPositions = new List<Vector3>();
+    private List<Vector2> initialPositions = new List<Vector2>();
 
-    private Vector3 draggedCarrotStartPos;
+    private Vector2 draggedCarrotStartPos;
 
     uint carrotCount = 0;
 
@@ -50,7 +50,7 @@ public class CarrotManager : MonoBehaviour
     private bool isMouseDrag = false;
 
     // 드래그된 당근의 마우스 클릭 offset
-    private Vector3 dragOffset;
+    private Vector2 dragOffset;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -76,7 +76,6 @@ public class CarrotManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
             float maxDistance = 10;
 
             Debug.DrawRay(carrotSenser.transform.position, Vector2.down * maxDistance, Color.red);
@@ -103,7 +102,7 @@ public class CarrotManager : MonoBehaviour
                     draggedCarrotStartPos = draggedCarrot.transform.position;
 
                     // 마우스와 당근 사이의 offset
-                    Vector3 mousePos = GetMouseWorldPosition();
+                    Vector2 mousePos = GetMouseWorldPosition();
                     dragOffset = draggedCarrotStartPos - mousePos;
                 }
             }
@@ -111,19 +110,23 @@ public class CarrotManager : MonoBehaviour
         // 2) 드래그 중
         else if (Input.GetMouseButton(0) && isMouseDrag && draggedCarrot != null)
         {
-            Vector3 mousePos = GetMouseWorldPosition();
+            Vector2 mousePos = GetMouseWorldPosition();
 
             // draggedCarrot의 새 위치
-            Vector3 newCarrotPos = mousePos + dragOffset;
+            Vector2 newCarrotPos = mousePos + dragOffset;
 
             // 당근이 얼마나 이동했는지 (Delta)
-            Vector3 delta = newCarrotPos - draggedCarrotStartPos;
+            Vector2 delta = newCarrotPos - draggedCarrotStartPos;
 
             // 모든 당근 이동
             for (int i = 0; i < carrotList.Count; i++)
             {
+                Vector2 targetPos = initialPositions[i] + delta;
+
+                targetPos.x = 0;
+
                 // initialPositions[i]에서 delta만큼 이동
-                carrotList[i].transform.position = initialPositions[i] + delta;
+                carrotList[i].transform.position = targetPos;
             }
         }
         // 3) 마우스를 뗐을 때
