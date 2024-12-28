@@ -695,7 +695,8 @@ MonoBehaviour:
   carrotMid: {fileID: 3619211766407420913, guid: da653a48d46288a4eb51bfc05194a284, type: 3}
   carrotBottom: {fileID: 3969630670245164029, guid: 5774801c3a0123947840d09ed0d12734, type: 3}
   maxCarrotCount: 4
-  speed: 0.0246
+  upSpeed: 0.0087
+  downSpeed: 0.0153
 --- !u!1 &1709809873
 GameObject:
   m_ObjectHideFlags: 0
