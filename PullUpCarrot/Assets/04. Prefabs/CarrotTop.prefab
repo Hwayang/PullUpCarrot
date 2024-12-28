@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2354280877786611338}
   m_Layer: 3
   m_Name: CarrotTop
-  m_TagString: Untagged
+  m_TagString: CarrotTop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e8b63004c4c1e4681c3979403945f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.0064
 --- !u!114 &1237316465511008060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40124b3daaf1a7a41a56772c5c0a546a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!61 &2354280877786611338
 BoxCollider2D:
   m_ObjectHideFlags: 0

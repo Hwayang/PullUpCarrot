@@ -65,14 +65,18 @@ public class CarrotManager : MonoBehaviour
 
     //마지막 제스처 마무리 좌표
     Vector2 endMousePos;
-#endregion
+
+    private float holdTime = 0f;    // 홀드한 시간
+
+    private float maxHoldTime = 2f; // 최대 홀드 시간(스트레치 제한)
+    #endregion
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // 새로 만든 오브젝트를 변수에 담는다
-        GameObject newCarrot = Instantiate(carrotTop, new Vector2(0, 0), Quaternion.identity);
+        GameObject newCarrot = Instantiate(carrotTop, new Vector2(0, -spawnCorVal), Quaternion.identity);
 
         // 그 인스턴스를 리스트에 추가
         carrotList.Add(newCarrot);
@@ -98,20 +102,39 @@ public class CarrotManager : MonoBehaviour
 
             isDrag = true;
         }
+        else if(Input.GetMouseButton(0) && isDrag)
+        {
+            holdTime += Time.deltaTime; // 프레임마다 경과 시간 추가
+            holdTime = Mathf.Clamp(holdTime, 0, maxHoldTime); // 최대 홀드 시간 제한
+
+            foreach (GameObject carrotObj in carrotList)
+            {
+                Carrot carrot = carrotObj.GetComponent<Carrot>();
+                carrot.ApplySquashStretch(holdTime / maxHoldTime , carrotObj); // 실시간으로 스쿼시 & 스트레치
+            }
+        }
         //화면에서 손을 땠을 때
         else if (Input.GetMouseButtonUp(0))
         {
             endMousePos = GetMouseWorldPosition();
 
+            holdTime = 0;
+
             pullForce = (endMousePos.y - startMousePos.y) * forceCorrectValue;
             
             isDrag = false;
+            isUp = true;
 
             Debug.Log("startMousePos" + startMousePos);
             Debug.Log("endMousePos" + endMousePos);
             Debug.Log("pullForce" + pullForce);
 
-            isUp = true;
+            foreach (GameObject carrotObj in carrotList)
+            {
+                Carrot carrot = carrotObj.GetComponent<Carrot>();
+                carrot.ResetSquashStretch(carrotObj); // 당근에 스쿼시 & 스트레치 적용
+            }
+
             StartCoroutine(pullingCarrot(pullForce));
         }
 
@@ -167,7 +190,7 @@ public class CarrotManager : MonoBehaviour
             {
                 if (carrotCount == maxCarrotCount)
                 {
-                    Vector2 targetLoc = new Vector2(0, carrotList.Last().transform.position.y - spawnCorVal);
+                    Vector2 targetLoc = new Vector2(0, carrotList.Last().transform.position.y - spawnCorVal / 2);
                  
                     GameObject newCarrot = Instantiate(carrotBottom);
                     carrotList.Add(newCarrot);
@@ -178,7 +201,7 @@ public class CarrotManager : MonoBehaviour
                 }
                 else
                 {
-                    Vector2 targetLoc = new Vector2(0, carrotList.Last().transform.position.y - spawnCorVal);
+                    Vector2 targetLoc = new Vector2(0, carrotList.Last().transform.position.y - spawnCorVal / 2);
 
                     GameObject newCarrot = Instantiate(carrotMid);
                     carrotList.Add(newCarrot);
