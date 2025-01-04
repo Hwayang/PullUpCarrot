@@ -36,8 +36,8 @@ public class CarrotManager : MonoBehaviour
     public uint maxCarrotCount;
 
     [SerializeField] //당근을 뽑는 힘의 보정값
-    [UnityEngine.Range(0, 9)]
-    public float forceCorrectValue;
+    [UnityEngine.Range(0, 1.5f)]
+    public float distCorrectValue;
 
     [SerializeField] //당근을 뽑기 위해 홀드하는 시간의 보정값
     [UnityEngine.Range(0, 1)]
@@ -50,6 +50,12 @@ public class CarrotManager : MonoBehaviour
     [SerializeField] //당근에 가해지는 힘의 그래프의 기울기
     [UnityEngine.Range(2, 3)]
     private float exponentVal;
+
+    [SerializeField]
+    private float maxTotalForce;
+
+    [SerializeField]
+    private float minTotalForce;
 
     [SerializeField]
     private SerializableDictionary<float, float> crackRange;
@@ -138,7 +144,8 @@ public class CarrotManager : MonoBehaviour
             holdTime = 0;
 
             //우상향을 그리는 지수함수꼴
-            pullForce = (holdTime / holdCorrectValue) + Mathf.Pow(((endMousePos.y - startMousePos.y) * forceCorrectValue), exponentVal);
+            //모바일 환경 특징상 위아래 이동에 한계가 있으므로 dist의 보정값을 hold보다 좀 더 높게 설정
+            pullForce = Mathf.Clamp((holdTime / holdCorrectValue) + Mathf.Pow(((endMousePos.y - startMousePos.y) * distCorrectValue), exponentVal), minTotalForce, maxTotalForce);
             
             //crackForce = (holdTime / holdCorrectVal) + (mouseMoveDist) * forceCorrectVal
             crackForce += JudgeCrack(pullForce);

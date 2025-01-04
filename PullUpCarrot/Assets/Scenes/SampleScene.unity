@@ -696,10 +696,12 @@ MonoBehaviour:
   carrotBottom: {fileID: 3969630670245164029, guid: 5774801c3a0123947840d09ed0d12734, type: 3}
   spawnCorVal: 2.88
   maxCarrotCount: 11
-  forceCorrectValue: 0.54
-  holdCorrectValue: 1
+  distCorrectValue: 1.002
+  holdCorrectValue: 0.391
   downSpeed: 0.0085
   exponentVal: 2.238
+  maxTotalForce: 50
+  minTotalForce: 20
   crackRange:
     size: 2
     keys:
