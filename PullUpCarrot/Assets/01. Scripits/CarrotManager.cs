@@ -40,15 +40,21 @@ public class CarrotManager : MonoBehaviour
     public float forceCorrectValue;
 
     [SerializeField] //당근을 뽑기 위해 홀드하는 시간의 보정값
-    [UnityEngine.Range(0, 9)]
+    [UnityEngine.Range(0, 1)]
     public float holdCorrectValue;
 
     [SerializeField] //당근이 내려가는 속도
     [UnityEngine.Range(0, 0.05f)]
     public float downSpeed;
 
+    [SerializeField] //당근에 가해지는 힘의 그래프의 기울기
+    [UnityEngine.Range(2, 3)]
+    private float exponentVal;
+
     [SerializeField]
     private SerializableDictionary<float, float> crackRange;
+
+
     #endregion
 
 
@@ -131,8 +137,10 @@ public class CarrotManager : MonoBehaviour
 
             holdTime = 0;
 
-            pullForce = holdTime / holdCorrectValue + (endMousePos.y - startMousePos.y) * forceCorrectValue;
-
+            //우상향을 그리는 지수함수꼴
+            pullForce = (holdTime / holdCorrectValue) + Mathf.Pow(((endMousePos.y - startMousePos.y) * forceCorrectValue), exponentVal);
+            
+            //crackForce = (holdTime / holdCorrectVal) + (mouseMoveDist) * forceCorrectVal
             crackForce += JudgeCrack(pullForce);
 
             Debug.Log(crackForce);
@@ -142,6 +150,10 @@ public class CarrotManager : MonoBehaviour
 
             //Debug.Log("startMousePos" + startMousePos);
             //Debug.Log("endMousePos" + endMousePos);
+
+            float mousePos = endMousePos.y - startMousePos.y;
+
+            Debug.Log("MousePos" + mousePos);
             Debug.Log("pullForce" + pullForce);
 
             foreach (GameObject carrotObj in carrotList)

@@ -696,15 +696,18 @@ MonoBehaviour:
   carrotBottom: {fileID: 3969630670245164029, guid: 5774801c3a0123947840d09ed0d12734, type: 3}
   spawnCorVal: 2.88
   maxCarrotCount: 11
-  forceCorrectValue: 7.21
-  holdCorrectValue: 2.34
+  forceCorrectValue: 0.54
+  holdCorrectValue: 1
   downSpeed: 0.0085
+  exponentVal: 2.238
   crackRange:
-  - 0
-  - 20
-  - 40
-  - 60
-  - 100
+    size: 2
+    keys:
+    - 0
+    - 4
+    values:
+    - 10
+    - 10
 --- !u!61 &1517731012
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -811,6 +814,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9788da35624ee8749b77fd569c58b926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carrotManager: {fileID: 1517731011}
+  gameOverVal: 3.33
 --- !u!4 &2096310766
 Transform:
   m_ObjectHideFlags: 0
