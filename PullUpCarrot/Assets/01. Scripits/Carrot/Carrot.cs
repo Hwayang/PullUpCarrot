@@ -26,7 +26,7 @@ public class Carrot : MonoBehaviour
 
         if (targetCarrot.CompareTag("CarrotTop") || targetCarrot.CompareTag("CarrotBottom"))
         {
-            targetCarrot.transform.DOScale(new Vector2(0.36f, 0.38f), 1).SetEase(Ease.OutElastic);
+            targetCarrot.transform.DOScale(new Vector2(0.36f, 0.36f), 1).SetEase(Ease.OutElastic);
         }
         else
         {

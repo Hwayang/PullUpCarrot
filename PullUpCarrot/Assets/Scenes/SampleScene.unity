@@ -695,9 +695,16 @@ MonoBehaviour:
   carrotMid: {fileID: 3619211766407420913, guid: da653a48d46288a4eb51bfc05194a284, type: 3}
   carrotBottom: {fileID: 3969630670245164029, guid: 5774801c3a0123947840d09ed0d12734, type: 3}
   spawnCorVal: 2.88
-  maxCarrotCount: 8
+  maxCarrotCount: 11
   forceCorrectValue: 7.21
-  downSpeed: 0.0153
+  holdCorrectValue: 2.34
+  downSpeed: 0.0085
+  crackRange:
+  - 0
+  - 20
+  - 40
+  - 60
+  - 100
 --- !u!61 &1517731012
 BoxCollider2D:
   m_ObjectHideFlags: 0

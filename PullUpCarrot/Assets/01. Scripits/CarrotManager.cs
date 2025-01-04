@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine.LightTransport;
 using System.Collections;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 public class CarrotManager : MonoBehaviour
 {
@@ -36,15 +37,22 @@ public class CarrotManager : MonoBehaviour
 
     [SerializeField] //당근을 뽑는 힘의 보정값
     [UnityEngine.Range(0, 9)]
-    private float forceCorrectValue;
+    public float forceCorrectValue;
+
+    [SerializeField] //당근을 뽑기 위해 홀드하는 시간의 보정값
+    [UnityEngine.Range(0, 9)]
+    public float holdCorrectValue;
 
     [SerializeField] //당근이 내려가는 속도
     [UnityEngine.Range(0, 0.05f)]
-    private float downSpeed;
+    public float downSpeed;
+
+    [SerializeField]
+    public Dictionary<float, float> crackRange;
 #endregion
 
 
-#region region Value
+    #region region Value
     //생성된 당근을 담는 리스트
     List<GameObject> carrotList = new List<GameObject>();
 
@@ -53,6 +61,9 @@ public class CarrotManager : MonoBehaviour
 
     //당기는 힘의 양
     private float pullForce;
+
+    //당근에 적용될 크랙의 양
+    public float crackForce { get; set; }
 
     //아직 화면에 닿아있는지 여부
     private bool isDrag = false;
@@ -68,7 +79,7 @@ public class CarrotManager : MonoBehaviour
 
     private float holdTime = 0f;    // 홀드한 시간
 
-    private float maxHoldTime = 2f; // 최대 홀드 시간(스트레치 제한)
+    private float maxHoldTime = 2f; // 최대 홀드 시간(스트레치 제한
     #endregion
 
 
@@ -120,13 +131,15 @@ public class CarrotManager : MonoBehaviour
 
             holdTime = 0;
 
-            pullForce = (endMousePos.y - startMousePos.y) * forceCorrectValue;
-            
+            pullForce = holdTime / holdCorrectValue + (endMousePos.y - startMousePos.y) * forceCorrectValue;
+
+            crackForce += JudgeCrack(pullForce);
+
             isDrag = false;
             isUp = true;
 
-            Debug.Log("startMousePos" + startMousePos);
-            Debug.Log("endMousePos" + endMousePos);
+            //Debug.Log("startMousePos" + startMousePos);
+            //Debug.Log("endMousePos" + endMousePos);
             Debug.Log("pullForce" + pullForce);
 
             foreach (GameObject carrotObj in carrotList)
@@ -152,6 +165,21 @@ public class CarrotManager : MonoBehaviour
         }
 
     }
+
+    private float JudgeCrack(float pullforce)
+    {
+        float crackVal = 0;
+
+        foreach (var crack in crackRange)
+        {
+            crackVal = (crack.Key < pullforce) ? pullforce : crack.Value;
+
+            if(pullforce != crackVal){ break; }
+        }
+
+        return crackVal;
+    }
+    
 
     IEnumerator pullingCarrot(float force)
     {
