@@ -48,8 +48,8 @@ public class CarrotManager : MonoBehaviour
     public float downSpeed;
 
     [SerializeField]
-    public Dictionary<float, float> crackRange;
-#endregion
+    private SerializableDictionary<float, float> crackRange;
+    #endregion
 
 
     #region region Value
@@ -135,6 +135,8 @@ public class CarrotManager : MonoBehaviour
 
             crackForce += JudgeCrack(pullForce);
 
+            Debug.Log(crackForce);
+
             isDrag = false;
             isUp = true;
 
@@ -170,7 +172,7 @@ public class CarrotManager : MonoBehaviour
     {
         float crackVal = 0;
 
-        foreach (var crack in crackRange)
+        foreach (var crack in crackRange.ToDictionary())
         {
             crackVal = (crack.Key < pullforce) ? pullforce : crack.Value;
 
