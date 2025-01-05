@@ -15,6 +15,7 @@ MonoBehaviour:
   items:
   - itemName: "\uC601\uC591\uC81C"
     cost: 0
-    unlockCondition: 
+    unlockCondition: Length
     conditionVal: 0
     itemAction: Add
+    actionVal: 0

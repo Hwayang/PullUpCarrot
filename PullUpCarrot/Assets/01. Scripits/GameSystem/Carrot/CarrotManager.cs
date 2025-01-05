@@ -52,10 +52,10 @@ public class CarrotManager : MonoBehaviour
     private float exponentVal;
 
     [SerializeField]
-    private float maxTotalForce;
+    public float maxTotalForce;
 
     [SerializeField]
-    private float minTotalForce;
+    public float minTotalForce;
 
     [SerializeField]
     private SerializableDictionary<float, float> crackRange;
