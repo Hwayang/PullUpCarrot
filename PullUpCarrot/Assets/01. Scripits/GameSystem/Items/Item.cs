@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[System.Serializable]
-public class Item
+[CreateAssetMenu(fileName = "Item", menuName = "Game/Item", order = 0)]
+public class Item : ScriptableObject
 {
     public bool canUse { get; set; } = false;
 

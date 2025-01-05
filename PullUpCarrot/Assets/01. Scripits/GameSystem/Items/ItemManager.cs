@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using NUnit.Framework.Interfaces;
 
-public class ItemEffectManager : MonoBehaviour
+public class ItemManager : MonoBehaviour
 {
     [SerializeField]
     GameManager gameManager;
@@ -11,7 +11,7 @@ public class ItemEffectManager : MonoBehaviour
     [SerializeField]
     CarrotManager carrotManager;
 
-    public static ItemEffectManager Instance;
+    public static ItemManager Instance;
 
     // 효과 식별 키 -> 실행될 델리게이트(메서드) 맵핑
     private Dictionary<string, Action<float>> effectTable;
@@ -85,6 +85,8 @@ public class ItemEffectManager : MonoBehaviour
         if (effectTable.TryGetValue(itemData.itemAction, out var action))
         {
             action.Invoke(itemData.actionVal);
+
+            Debug.Log("아이템 효과 사용");
         }
         else
         {

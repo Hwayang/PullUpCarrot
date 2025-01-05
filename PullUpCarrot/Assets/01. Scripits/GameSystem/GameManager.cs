@@ -8,8 +8,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float gameOverVal;
 
+    [SerializeField]
+    private Item item;
+
+    [SerializeField]
+    private ItemManager itemManager;
+
     private bool isGameOver = false;
-    
 
     public float currentGold { get; set; }
     public float maxCarrotLength { get; set; }
@@ -28,5 +33,13 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("GameOveris : " + isGameOver);
+
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            itemManager.InvokeItemEffect(item);
+
+            Debug.Log("V ´­¸²");
+            Debug.Log("CarrotCount" + carrotManager.maxCarrotCount);
+        }
     }
 }

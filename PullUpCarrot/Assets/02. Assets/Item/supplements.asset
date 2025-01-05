@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0418158524ecf7240826a778bcd890de, type: 3}
+  m_Script: {fileID: 11500000, guid: 4de00996a28c4d44388980311c3e369b, type: 3}
   m_Name: supplements
   m_EditorClassIdentifier: 
-  items:
-  - itemName: "\uC601\uC591\uC81C"
-    cost: 0
-    unlockCondition: Length
-    conditionVal: 0
-    itemAction: Add
-    actionVal: 0
+  itemName: "\uC601\uC591\uC81C"
+  cost: 0
+  unlockCondition: Buy
+  conditionVal: 0
+  itemAction: Add
+  actionVal: 3
