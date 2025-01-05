@@ -45,7 +45,7 @@ public class CarrotManager : MonoBehaviour
 
     [SerializeField] //당근이 내려가는 속도
     [UnityEngine.Range(0, 0.05f)]
-    public float downSpeed;
+    public float defaultDownSpeed;
 
     [SerializeField] //당근에 가해지는 힘의 그래프의 기울기
     [UnityEngine.Range(2, 3)]
@@ -83,6 +83,8 @@ public class CarrotManager : MonoBehaviour
     //당근이 올라가고 있는지 여부
     private bool isUp = false;
 
+    private float downSpeed;
+
     //최초 제스처 시작 좌표
     Vector2 startMousePos;
 
@@ -118,6 +120,15 @@ public class CarrotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (carrotList[0].transform.position.y <= -spawnCorVal)
+        {
+            downSpeed = 0;
+        }
+        else
+        {
+            downSpeed = defaultDownSpeed;
+        }
+
         //최초 화면을 눌렀을 때
         if (Input.GetMouseButtonDown(0))
         {

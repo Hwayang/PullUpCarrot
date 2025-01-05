@@ -698,7 +698,7 @@ MonoBehaviour:
   maxCarrotCount: 11
   distCorrectValue: 1.002
   holdCorrectValue: 0.391
-  downSpeed: 0.0085
+  defaultDownSpeed: 0.0079
   exponentVal: 2.238
   maxTotalForce: 50
   minTotalForce: 20
@@ -816,8 +816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c74793760ecbb8408315577ce55be0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  carrotManager: {fileID: 0}
+  gameManager: {fileID: 2096310765}
+  carrotManager: {fileID: 1517731011}
 --- !u!4 &1979615231
 Transform:
   m_ObjectHideFlags: 0
@@ -864,6 +864,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carrotManager: {fileID: 1517731011}
   gameOverVal: 3.33
+  item: {fileID: 11400000, guid: 73db4e7e8310b6644936bf190a4b271c, type: 2}
+  itemManager: {fileID: 1979615230}
 --- !u!4 &2096310766
 Transform:
   m_ObjectHideFlags: 0
