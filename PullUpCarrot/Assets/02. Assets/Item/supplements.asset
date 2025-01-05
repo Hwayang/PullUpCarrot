@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0418158524ecf7240826a778bcd890de, type: 3}
+  m_Name: supplements
+  m_EditorClassIdentifier: 
+  items:
+  - itemName: "\uC601\uC591\uC81C"
+    cost: 0
+    unlockCondition: 
+    conditionVal: 0
+    itemAction: Add
