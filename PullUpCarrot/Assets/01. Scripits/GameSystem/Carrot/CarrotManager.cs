@@ -69,7 +69,7 @@ public class CarrotManager : MonoBehaviour
     List<GameObject> carrotList = new List<GameObject>();
 
     //생성된 당근의 개수
-    uint carrotCount = 0;
+    public uint carrotCount = 0;
 
     //당기는 힘의 양
     private float pullForce;
