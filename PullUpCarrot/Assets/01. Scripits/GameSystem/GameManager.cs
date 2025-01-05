@@ -20,13 +20,18 @@ public class GameManager : MonoBehaviour
         end
     }
 
-    public GameState currentState;
+    public GameState currentState { get; set; }
+
+    public static GameManager Instance;
 
     public float currentGold { get; set; }
     public float maxCarrotLength { get; set; }
 
     void Awake()
     {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+
         EnterReadyState();
     }
 
@@ -36,22 +41,27 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameState.ready:
-                // 준비 단계 로직 반복 (필요하다면)
+                carrotManager.enabled = false;
                 break;
 
             case GameState.execution:
-                // 실행 단계 로직 (Input 체크 등)
+                carrotManager.enabled = true;
                 break;
 
             case GameState.end:
-                // 종료(결과) 단계 로직
+                carrotManager.enabled = false;
                 break;
         }
 
-        if (carrotManager.crackForce > gameOverVal)
+        if(Input.GetMouseButtonDown(0))
         {
-            EndGame();
-        }
+            StartExecution();
+        }    
+
+        //if (carrotManager.crackForce > gameOverVal)
+        //{
+        //    EndGame();
+        //}
 
         Debug.Log("GameOveris : " + isGameOver);
     }
@@ -77,7 +87,7 @@ public class GameManager : MonoBehaviour
     {
         currentState = GameState.end;
 
-        currentGold = carrotManager.carrotCount / goldCorVal;
+        currentGold = carrotManager.carrotCount; /// goldCorVal;
         // 뽑은 당근 길이/내구도 확인 → 골드 계산
         Debug.Log("End State: 보상 계산 및 결과 표시");
     }

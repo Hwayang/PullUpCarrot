@@ -1,9 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class Carrot : MonoBehaviour
 {
+    public bool isSatrt = false;
+
+    private void OnMouseDown()
+    {
+        GameManager.Instance.currentState = GameManager.GameState.execution;
+    }
+
     public void ApplySquashStretch(float stretchRatio, GameObject targetCarrot)
     {
         //Debug.Log("stratch");
@@ -33,18 +41,6 @@ public class Carrot : MonoBehaviour
             targetCarrot.transform.DOScale(new Vector2(0.36f, 0.36f), 1).SetEase(Ease.OutElastic);
         }
 
-
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-           
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 }
