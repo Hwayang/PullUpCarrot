@@ -53,11 +53,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        if(Input.GetMouseButtonDown(0))
-        {
-            StartExecution();
-        }    
-
         //if (carrotManager.crackForce > gameOverVal)
         //{
         //    EndGame();

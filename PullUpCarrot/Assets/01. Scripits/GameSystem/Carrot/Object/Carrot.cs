@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class Carrot : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class Carrot : MonoBehaviour
 
     private void OnMouseDown()
     {
+        // 만약 클릭 위치가 UI 오브젝트 위라면, 당근 클릭 로직을 무시
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log("무시");
+            return;
+        }
+
         GameManager.Instance.currentState = GameManager.GameState.execution;
     }
 
