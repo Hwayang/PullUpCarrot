@@ -8,6 +8,6 @@ public class GoldDisplay : MonoBehaviour
     private void Update()
     {
         // 매 프레임, UserDataManager의 currentGold를 가져와서 표시
-        goldText.text = "Gold: " + UserData.Instance.currentGold.ToString();
+        goldText.text = UserData.Instance.currentGold.ToString();
     }
 }

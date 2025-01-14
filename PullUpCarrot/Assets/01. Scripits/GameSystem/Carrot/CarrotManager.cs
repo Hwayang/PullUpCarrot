@@ -101,7 +101,7 @@ public class CarrotManager : MonoBehaviour
     void Start()
     {
         // 새로 만든 오브젝트를 변수에 담는다
-        GameObject newCarrot = Instantiate(carrotTop, new Vector2(0, -spawnCorVal), Quaternion.identity);
+        GameObject newCarrot = Instantiate(carrotTop, new Vector2(0, 0), Quaternion.identity);
 
         // 그 인스턴스를 리스트에 추가
         carrotList.Add(newCarrot);
@@ -248,6 +248,8 @@ public class CarrotManager : MonoBehaviour
             // 만약 센서가 소환 신호를 줬고, carrotCount <= maxCarrotCount 등 조건이 맞을 때만
             if (carrotSenser.isCarrotSummon && carrotCount <= maxCarrotCount)
             {
+                Debug.Log("CarrotSenser" + carrotSenser.isCarrotSummon);
+
                 if (carrotCount == maxCarrotCount)
                 {
                     Vector2 targetLoc = new Vector2(0, carrotList.Last().transform.position.y - spawnCorVal / 2);

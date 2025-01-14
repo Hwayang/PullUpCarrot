@@ -28,7 +28,7 @@ public class Carrot : MonoBehaviour
         if (targetCarrot.CompareTag("CarrotTop") || targetCarrot.CompareTag("CarrotBottom"))
         {
             stretchFactor = Mathf.Lerp(0.363f, 0.443f, stretchRatio);
-            targetCarrot.transform.DOScale(new Vector2(stretchFactor, 0.44f), 0.2f);
+            targetCarrot.transform.DOScale(new Vector2(stretchFactor, 0.36f), 0.2f);
         }
         else
         {
